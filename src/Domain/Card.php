@@ -13,6 +13,7 @@ final class Card
     {
         return match ($this->rank) {
             'Jack', 'Queen', 'King' => 10,
+            'Ace' => 11,
             default => (int) $this->rank,
         };
     }

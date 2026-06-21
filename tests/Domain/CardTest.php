@@ -20,4 +20,11 @@ final class CardTest extends TestCase
 
         $this->assertSame(10, $card->numericValue());
     }
+
+    public function testAceHasNumericValueOf11(): void
+    {
+        $card = new Card('Ace', 'Spades');
+
+        $this->assertSame(11, $card->numericValue());
+    }
 }

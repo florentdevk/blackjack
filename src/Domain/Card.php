@@ -11,6 +11,9 @@ final class Card
 
     public function numericValue(): int
     {
-        return (int) $this->rank;
+        return match ($this->rank) {
+            'Jack', 'Queen', 'King' => 10,
+            default => (int) $this->rank,
+        };
     }
 }

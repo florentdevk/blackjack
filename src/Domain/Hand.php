@@ -16,9 +16,20 @@ final class Hand
     public function value(): int
     {
         $total = 0;
+        $aces = 0;
+
         foreach ($this->cards as $card) {
             $total += $card->numericValue();
+            if ($card->rank() === 'Ace') {
+                $aces++;
+            }
         }
+
+        while ($total > 21 && $aces > 0) {
+            $total -= 10;
+            $aces--;
+        }
+
         return $total;
     }
 }

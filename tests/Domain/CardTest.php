@@ -27,4 +27,11 @@ final class CardTest extends TestCase
 
         $this->assertSame(11, $card->numericValue());
     }
+
+    public function testInvalidRankThrowsException(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        new Card('invalid', 'Hearts');
+    }
 }

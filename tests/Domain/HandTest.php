@@ -14,4 +14,12 @@ final class HandTest extends TestCase
 
         $this->assertSame(0, $hand->value());
     }
+
+    public function testHandWithOneCardReturnsCardValue(): void
+    {
+        $hand = new Hand();
+        $hand->addCard(new Card('7', 'Hearts'));
+
+        $this->assertSame(7, $hand->value());
+    }
 }

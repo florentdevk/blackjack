@@ -22,4 +22,12 @@ final class ShoeTest extends TestCase
 
         $this->assertInstanceOf(Card::class, $card);
     }
+
+    public function testDrawReducesCardCount(): void
+    {
+        $shoe = new Shoe(1);
+        $shoe->draw();
+
+        $this->assertSame(51, $shoe->count());
+    }
 }

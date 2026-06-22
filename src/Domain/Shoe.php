@@ -24,4 +24,9 @@ final class Shoe
     {
         return count($this->cards);
     }
+
+    public function draw(): Card
+    {
+        return array_shift($this->cards);
+    }
 }

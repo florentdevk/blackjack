@@ -32,4 +32,13 @@ final class HandTest extends TestCase
 
         $this->assertSame(16, $hand->value());
     }
+
+    public function testNaturalBlackjackWithAceAndKing(): void
+    {
+        $hand = new Hand();
+        $hand->addCard(new Card('Ace', 'Hearts'));
+        $hand->addCard(new Card('King', 'Spades'));
+
+        $this->assertTrue($hand->isBlackjack());
+    }
 }

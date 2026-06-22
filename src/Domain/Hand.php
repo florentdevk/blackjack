@@ -32,4 +32,9 @@ final class Hand
 
         return $total;
     }
+
+    public function isBlackjack(): bool
+    {
+        return count($this->cards) === 2 && $this->value() === 21;
+    }
 }

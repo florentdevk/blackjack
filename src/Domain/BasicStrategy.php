@@ -19,8 +19,11 @@ final class BasicStrategy
             return Decision::Hit;
         }
 
-        if ($hand->isSoft() && $value === 17 && $dealerValue >= 3 && $dealerValue <= 6) {
-            return Decision::Double;
+        if ($hand->isSoft() && $value === 17) {
+            if ($dealerValue >= 3 && $dealerValue <= 6) {
+                return Decision::Double;
+            }
+            return Decision::Hit;
         }
 
         if ($hand->isSoft() && $value >= 15 && $value <= 16 && $dealerValue >= 4 && $dealerValue <= 6) {

@@ -9,6 +9,10 @@ final class BasicStrategy
         $value = $hand->value();
         $dealerValue = $dealerCard->numericValue();
 
+        if ($hand->isSoft() && $value === 18 && $dealerValue >= 3 && $dealerValue <= 6) {
+            return Decision::Double;
+        }
+
         if ($value >= 17) {
             return Decision::Stand;
         }

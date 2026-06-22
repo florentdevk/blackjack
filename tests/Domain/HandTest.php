@@ -51,4 +51,14 @@ final class HandTest extends TestCase
 
         $this->assertFalse($hand->isBlackjack());
     }
+
+    public function testHandIsBustWhenValueExceeds21(): void
+    {
+        $hand = new Hand();
+        $hand->addCard(new Card('King', 'Hearts'));
+        $hand->addCard(new Card('Queen', 'Spades'));
+        $hand->addCard(new Card('5', 'Diamonds'));
+
+        $this->assertTrue($hand->isBust());
+    }
 }

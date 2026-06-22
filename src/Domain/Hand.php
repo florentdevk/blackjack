@@ -37,4 +37,9 @@ final class Hand
     {
         return count($this->cards) === 2 && $this->value() === 21;
     }
+
+    public function isBust(): bool
+    {
+        return $this->value() > 21;
+    }
 }

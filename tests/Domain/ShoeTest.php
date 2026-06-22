@@ -30,4 +30,21 @@ final class ShoeTest extends TestCase
 
         $this->assertSame(51, $shoe->count());
     }
+
+    public function testShuffleRandomizesCards(): void
+    {
+        $shoe1 = new Shoe(1);
+        $shoe2 = new Shoe(1);
+        $shoe2->shuffle();
+
+        $cards1 = [];
+        $cards2 = [];
+
+        for ($i = 0; $i < 52; $i++) {
+            $cards1[] = $shoe1->draw()->rank();
+            $cards2[] = $shoe2->draw()->rank();
+        }
+
+        $this->assertNotEquals($cards1, $cards2);
+    }
 }

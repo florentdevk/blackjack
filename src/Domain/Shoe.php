@@ -29,4 +29,9 @@ final class Shoe
     {
         return array_shift($this->cards);
     }
+
+    public function shuffle(): void
+    {
+        shuffle($this->cards);
+    }
 }

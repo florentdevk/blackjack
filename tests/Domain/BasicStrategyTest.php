@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 final class BasicStrategyTest extends TestCase
 {
-    public function testHard16AgainstDealerTenShouldHit(): void
+    public function testHard16AgainstDealerTenShouldSurrender(): void
     {
         $strategy = new BasicStrategy();
 
@@ -20,7 +20,7 @@ final class BasicStrategyTest extends TestCase
 
         $dealerCard = new Card('10', 'Diamonds');
 
-        $this->assertSame(Decision::Hit, $strategy->decide($hand, $dealerCard));
+        $this->assertSame(Decision::Surrender, $strategy->decide($hand, $dealerCard));
     }
 
     public function testHard17ShouldStand(): void
@@ -35,6 +35,7 @@ final class BasicStrategyTest extends TestCase
 
         $this->assertSame(Decision::Stand, $strategy->decide($hand, $dealerCard));
     }
+
     public function testHard12AgainstDealer4ShouldStand(): void
     {
         $strategy = new BasicStrategy();
@@ -293,5 +294,44 @@ final class BasicStrategyTest extends TestCase
         $dealerCard = new Card('Ace', 'Diamonds');
 
         $this->assertSame(Decision::Hit, $strategy->decide($hand, $dealerCard));
+    }
+
+    public function testHard16AgainstDealer9ShouldSurrender(): void
+    {
+        $strategy = new BasicStrategy();
+
+        $hand = new Hand();
+        $hand->addCard(new Card('9', 'Hearts'));
+        $hand->addCard(new Card('7', 'Spades'));
+
+        $dealerCard = new Card('9', 'Diamonds');
+
+        $this->assertSame(Decision::Surrender, $strategy->decide($hand, $dealerCard));
+    }
+
+    public function testHard15AgainstDealerTenShouldSurrender(): void
+    {
+        $strategy = new BasicStrategy();
+
+        $hand = new Hand();
+        $hand->addCard(new Card('9', 'Hearts'));
+        $hand->addCard(new Card('6', 'Spades'));
+
+        $dealerCard = new Card('10', 'Diamonds');
+
+        $this->assertSame(Decision::Surrender, $strategy->decide($hand, $dealerCard));
+    }
+
+    public function testHard16AgainstDealerAceShouldSurrender(): void
+    {
+        $strategy = new BasicStrategy();
+
+        $hand = new Hand();
+        $hand->addCard(new Card('9', 'Hearts'));
+        $hand->addCard(new Card('7', 'Spades'));
+
+        $dealerCard = new Card('Ace', 'Diamonds');
+
+        $this->assertSame(Decision::Surrender, $strategy->decide($hand, $dealerCard));
     }
 }

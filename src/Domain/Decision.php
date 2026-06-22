@@ -8,4 +8,5 @@ enum Decision
     case Stand;
     case Double;
     case Split;
+    case Surrender;
 }

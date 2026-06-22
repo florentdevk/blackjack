@@ -21,6 +21,10 @@ final class BasicStrategy
             return Decision::Stand;
         }
 
+        if ($value === 11 && $dealerValue >= 2 && $dealerValue <= 10) {
+            return Decision::Double;
+        }
+
         return Decision::Hit;
     }
 }

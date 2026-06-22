@@ -190,4 +190,17 @@ final class BasicStrategyTest extends TestCase
 
         $this->assertSame(Decision::Double, $strategy->decide($hand, $dealerCard));
     }
+
+    public function testHard12AgainstDealer2ShouldHit(): void
+    {
+        $strategy = new BasicStrategy();
+
+        $hand = new Hand();
+        $hand->addCard(new Card('7', 'Hearts'));
+        $hand->addCard(new Card('5', 'Spades'));
+
+        $dealerCard = new Card('2', 'Diamonds');
+
+        $this->assertSame(Decision::Hit, $strategy->decide($hand, $dealerCard));
+    }
 }

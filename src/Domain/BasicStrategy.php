@@ -38,11 +38,11 @@ final class BasicStrategy
             return Decision::Stand;
         }
 
-        if ($value >= 13 && $value <= 16 && $dealerValue >= 2 && $dealerValue <= 6) {
+        if (!$hand->isSoft() && $value >= 13 && $value <= 16 && $dealerValue >= 2 && $dealerValue <= 6) {
             return Decision::Stand;
         }
 
-        if ($value === 12 && $dealerValue >= 4 && $dealerValue <= 6) {
+        if (!$hand->isSoft() && $value === 12 && $dealerValue >= 4 && $dealerValue <= 6) {
             return Decision::Stand;
         }
 

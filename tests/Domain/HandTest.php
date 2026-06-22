@@ -61,4 +61,13 @@ final class HandTest extends TestCase
 
         $this->assertTrue($hand->isBust());
     }
+
+    public function testHandWithAceCountedAs11IsSoft(): void
+    {
+        $hand = new Hand();
+        $hand->addCard(new Card('Ace', 'Hearts'));
+        $hand->addCard(new Card('6', 'Spades'));
+
+        $this->assertTrue($hand->isSoft());
+    }
 }

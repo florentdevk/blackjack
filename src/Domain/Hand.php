@@ -42,4 +42,19 @@ final class Hand
     {
         return $this->value() > 21;
     }
+
+    public function isSoft(): bool
+    {
+        $total = 0;
+        $aces = 0;
+
+        foreach ($this->cards as $card) {
+            $total += $card->numericValue();
+            if ($card->rank() === 'Ace') {
+                $aces++;
+            }
+        }
+
+        return $aces > 0 && $total <= 21;
+    }
 }

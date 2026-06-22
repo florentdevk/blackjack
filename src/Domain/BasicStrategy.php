@@ -9,11 +9,28 @@ final class BasicStrategy
         $value = $hand->value();
         $dealerValue = $dealerCard->numericValue();
 
-        if ($hand->isSoft() && $value === 18 && $dealerValue >= 3 && $dealerValue <= 6) {
+        if ($hand->isSoft() && $value === 18) {
+            if ($dealerValue >= 3 && $dealerValue <= 6) {
+                return Decision::Double;
+            }
+            if ($dealerValue === 2 || $dealerValue === 7 || $dealerValue === 8) {
+                return Decision::Stand;
+            }
+            return Decision::Hit;
+        }
+
+        if ($hand->isSoft() && $value === 17) {
+            if ($dealerValue >= 3 && $dealerValue <= 6) {
+                return Decision::Double;
+            }
+            return Decision::Hit;
+        }
+
+        if ($hand->isSoft() && $value >= 15 && $value <= 16 && $dealerValue >= 4 && $dealerValue <= 6) {
             return Decision::Double;
         }
 
-        if ($hand->isSoft() && $value === 17 && $dealerValue >= 3 && $dealerValue <= 6) {
+        if ($hand->isSoft() && $value >= 13 && $value <= 14 && $dealerValue >= 5 && $dealerValue <= 6) {
             return Decision::Double;
         }
 
@@ -21,11 +38,19 @@ final class BasicStrategy
             return Decision::Stand;
         }
 
-        if ($value >= 13 && $value <= 16 && $dealerValue >= 2 && $dealerValue <= 6) {
+        if (!$hand->isSoft() && $value === 16 && ($dealerValue === 9 || $dealerValue === 10 || $dealerValue === 11)) {
+            return Decision::Surrender;
+        }
+
+        if (!$hand->isSoft() && $value === 15 && $dealerValue === 10) {
+            return Decision::Surrender;
+        }
+
+        if (!$hand->isSoft() && $value >= 13 && $value <= 16 && $dealerValue >= 2 && $dealerValue <= 6) {
             return Decision::Stand;
         }
 
-        if ($value === 12 && $dealerValue >= 4 && $dealerValue <= 6) {
+        if (!$hand->isSoft() && $value === 12 && $dealerValue >= 4 && $dealerValue <= 6) {
             return Decision::Stand;
         }
 

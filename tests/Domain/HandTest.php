@@ -41,4 +41,14 @@ final class HandTest extends TestCase
 
         $this->assertTrue($hand->isBlackjack());
     }
+
+    public function testThreeCardTwentyOneIsNotBlackjack(): void
+    {
+        $hand = new Hand();
+        $hand->addCard(new Card('7', 'Hearts'));
+        $hand->addCard(new Card('7', 'Spades'));
+        $hand->addCard(new Card('7', 'Diamonds'));
+
+        $this->assertFalse($hand->isBlackjack());
+    }
 }

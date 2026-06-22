@@ -334,4 +334,56 @@ final class BasicStrategyTest extends TestCase
 
         $this->assertSame(Decision::Surrender, $strategy->decide($hand, $dealerCard));
     }
+
+    public function testHard8ShouldAlwaysHit(): void
+    {
+        $strategy = new BasicStrategy();
+
+        $hand = new Hand();
+        $hand->addCard(new Card('4', 'Hearts'));
+        $hand->addCard(new Card('4', 'Spades'));
+
+        $dealerCard = new Card('6', 'Diamonds');
+
+        $this->assertSame(Decision::Hit, $strategy->decide($hand, $dealerCard));
+    }
+
+    public function testHard9AgainstDealer2ShouldHit(): void
+    {
+        $strategy = new BasicStrategy();
+
+        $hand = new Hand();
+        $hand->addCard(new Card('5', 'Hearts'));
+        $hand->addCard(new Card('4', 'Spades'));
+
+        $dealerCard = new Card('2', 'Diamonds');
+
+        $this->assertSame(Decision::Hit, $strategy->decide($hand, $dealerCard));
+    }
+
+    public function testHard9AgainstDealer7ShouldHit(): void
+    {
+        $strategy = new BasicStrategy();
+
+        $hand = new Hand();
+        $hand->addCard(new Card('5', 'Hearts'));
+        $hand->addCard(new Card('4', 'Spades'));
+
+        $dealerCard = new Card('7', 'Diamonds');
+
+        $this->assertSame(Decision::Hit, $strategy->decide($hand, $dealerCard));
+    }
+
+    public function testHard16AgainstDealer7ShouldHit(): void
+    {
+        $strategy = new BasicStrategy();
+
+        $hand = new Hand();
+        $hand->addCard(new Card('9', 'Hearts'));
+        $hand->addCard(new Card('7', 'Spades'));
+
+        $dealerCard = new Card('7', 'Diamonds');
+
+        $this->assertSame(Decision::Hit, $strategy->decide($hand, $dealerCard));
+    }
 }

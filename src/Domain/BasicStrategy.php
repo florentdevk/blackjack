@@ -9,6 +9,14 @@ final class BasicStrategy
         $value = $hand->value();
         $dealerValue = $dealerCard->numericValue();
 
+        if ($hand->isPair()) {
+            $rank = $hand->pairRank();
+
+            if ($rank === 'Ace' || $rank === '8') {
+                return Decision::Split;
+            }
+        }
+
         if ($hand->isSoft() && $value === 18) {
             if ($dealerValue >= 3 && $dealerValue <= 6) {
                 return Decision::Double;

@@ -340,8 +340,8 @@ final class BasicStrategyTest extends TestCase
         $strategy = new BasicStrategy();
 
         $hand = new Hand();
-        $hand->addCard(new Card('4', 'Hearts'));
-        $hand->addCard(new Card('4', 'Spades'));
+        $hand->addCard(new Card('5', 'Hearts'));
+        $hand->addCard(new Card('3', 'Spades'));
 
         $dealerCard = new Card('6', 'Diamonds');
 
@@ -448,6 +448,19 @@ final class BasicStrategyTest extends TestCase
         $hand->addCard(new Card('6', 'Spades'));
 
         $dealerCard = new Card('4', 'Diamonds');
+
+        $this->assertSame(Decision::Split, $strategy->decide($hand, $dealerCard));
+    }
+
+    public function testPairOf4sAgainstDealer5ShouldSplit(): void
+    {
+        $strategy = new BasicStrategy();
+
+        $hand = new Hand();
+        $hand->addCard(new Card('4', 'Hearts'));
+        $hand->addCard(new Card('4', 'Spades'));
+
+        $dealerCard = new Card('5', 'Diamonds');
 
         $this->assertSame(Decision::Split, $strategy->decide($hand, $dealerCard));
     }

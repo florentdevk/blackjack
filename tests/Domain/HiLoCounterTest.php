@@ -23,4 +23,12 @@ final class HiLoCounterTest extends TestCase
 
         $this->assertSame(0, $counter->runningCount());
     }
+
+    public function testHighCardDecrementsCount(): void
+    {
+        $counter = new HiLoCounter();
+        $counter->count(new Card('King', 'Hearts'));
+
+        $this->assertSame(-1, $counter->runningCount());
+    }
 }

@@ -31,6 +31,10 @@ final class BasicStrategy
             if ($rank === '4' && $dealerValue >= 5 && $dealerValue <= 6) {
                 return Decision::Split;
             }
+
+            if ($rank === '3' && $dealerValue >= 2 && $dealerValue <= 7) {
+                return Decision::Split;
+            }
         }
 
         if ($hand->isSoft() && $value === 18) {

@@ -8,7 +8,13 @@ final class HiLoCounter
 
     public function count(Card $card): void
     {
-        $this->count++;
+        $value = $card->numericValue();
+
+        if ($value >= 2 && $value <= 6) {
+            $this->count++;
+        } elseif ($value >= 10) {
+            $this->count--;
+        }
     }
 
     public function runningCount(): int

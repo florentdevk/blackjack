@@ -70,4 +70,13 @@ final class HandTest extends TestCase
 
         $this->assertTrue($hand->isSoft());
     }
+
+    public function testHandWithTwoIdenticalRanksIsPair(): void
+    {
+        $hand = new Hand();
+        $hand->addCard(new Card('8', 'Hearts'));
+        $hand->addCard(new Card('8', 'Spades'));
+
+        $this->assertTrue($hand->isPair());
+    }
 }

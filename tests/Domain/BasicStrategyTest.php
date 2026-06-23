@@ -490,4 +490,30 @@ final class BasicStrategyTest extends TestCase
 
         $this->assertSame(Decision::Split, $strategy->decide($hand, $dealerCard));
     }
+
+    public function testPairOf5sShouldNotSplit(): void
+    {
+        $strategy = new BasicStrategy();
+
+        $hand = new Hand();
+        $hand->addCard(new Card('5', 'Hearts'));
+        $hand->addCard(new Card('5', 'Spades'));
+
+        $dealerCard = new Card('6', 'Diamonds');
+
+        $this->assertSame(Decision::Double, $strategy->decide($hand, $dealerCard));
+    }
+
+    public function testPairOf10sShouldNotSplit(): void
+    {
+        $strategy = new BasicStrategy();
+
+        $hand = new Hand();
+        $hand->addCard(new Card('10', 'Hearts'));
+        $hand->addCard(new Card('10', 'Spades'));
+
+        $dealerCard = new Card('6', 'Diamonds');
+
+        $this->assertSame(Decision::Stand, $strategy->decide($hand, $dealerCard));
+    }
 }

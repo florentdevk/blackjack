@@ -4,6 +4,7 @@ namespace App\Domain;
 
 final class Shoe
 {
+    /** @var Card[] */
     private array $cards = [];
 
     public function __construct(int $decks = 1)

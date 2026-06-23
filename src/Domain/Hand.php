@@ -4,8 +4,9 @@ namespace App\Domain;
 
 final class Hand
 {
+    /** @param Card[] $cards */
     public function __construct(
-        private array $cards = []
+        private array $cards = [],
     ) {}
 
     public function addCard(Card $card): void

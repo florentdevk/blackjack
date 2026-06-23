@@ -42,4 +42,14 @@ final class HiLoCounterTest extends TestCase
 
         $this->assertSame(1, $counter->runningCount());
     }
+
+    public function testResetCounterReturnsToZero(): void
+    {
+        $counter = new HiLoCounter();
+        $counter->count(new Card('2', 'Hearts'));
+        $counter->count(new Card('3', 'Spades'));
+        $counter->reset();
+
+        $this->assertSame(0, $counter->runningCount());
+    }
 }

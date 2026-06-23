@@ -21,4 +21,9 @@ final class HiLoCounter
     {
         return $this->count;
     }
+
+    public function reset(): void
+    {
+        $this->count = 0;
+    }
 }

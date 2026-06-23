@@ -412,4 +412,17 @@ final class BasicStrategyTest extends TestCase
 
         $this->assertSame(Decision::Split, $strategy->decide($hand, $dealerCard));
     }
+
+    public function testPairOf9sAgainstDealer7ShouldStand(): void
+    {
+        $strategy = new BasicStrategy();
+
+        $hand = new Hand();
+        $hand->addCard(new Card('9', 'Hearts'));
+        $hand->addCard(new Card('9', 'Spades'));
+
+        $dealerCard = new Card('7', 'Diamonds');
+
+        $this->assertSame(Decision::Stand, $strategy->decide($hand, $dealerCard));
+    }
 }

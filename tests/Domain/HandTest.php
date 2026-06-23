@@ -79,4 +79,13 @@ final class HandTest extends TestCase
 
         $this->assertTrue($hand->isPair());
     }
+
+    public function testHandWithDifferentRanksIsNotPair(): void
+    {
+        $hand = new Hand();
+        $hand->addCard(new Card('8', 'Hearts'));
+        $hand->addCard(new Card('9', 'Spades'));
+
+        $this->assertFalse($hand->isPair());
+    }
 }

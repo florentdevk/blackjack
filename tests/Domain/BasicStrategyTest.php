@@ -340,8 +340,8 @@ final class BasicStrategyTest extends TestCase
         $strategy = new BasicStrategy();
 
         $hand = new Hand();
-        $hand->addCard(new Card('4', 'Hearts'));
-        $hand->addCard(new Card('4', 'Spades'));
+        $hand->addCard(new Card('5', 'Hearts'));
+        $hand->addCard(new Card('3', 'Spades'));
 
         $dealerCard = new Card('6', 'Diamonds');
 
@@ -385,5 +385,135 @@ final class BasicStrategyTest extends TestCase
         $dealerCard = new Card('7', 'Diamonds');
 
         $this->assertSame(Decision::Hit, $strategy->decide($hand, $dealerCard));
+    }
+
+    public function testPairOf8sShouldAlwaysSplit(): void
+    {
+        $strategy = new BasicStrategy();
+
+        $hand = new Hand();
+        $hand->addCard(new Card('8', 'Hearts'));
+        $hand->addCard(new Card('8', 'Spades'));
+
+        $dealerCard = new Card('6', 'Diamonds');
+
+        $this->assertSame(Decision::Split, $strategy->decide($hand, $dealerCard));
+    }
+
+    public function testPairOf9sAgainstDealer6ShouldSplit(): void
+    {
+        $strategy = new BasicStrategy();
+
+        $hand = new Hand();
+        $hand->addCard(new Card('9', 'Hearts'));
+        $hand->addCard(new Card('9', 'Spades'));
+
+        $dealerCard = new Card('6', 'Diamonds');
+
+        $this->assertSame(Decision::Split, $strategy->decide($hand, $dealerCard));
+    }
+
+    public function testPairOf9sAgainstDealer7ShouldStand(): void
+    {
+        $strategy = new BasicStrategy();
+
+        $hand = new Hand();
+        $hand->addCard(new Card('9', 'Hearts'));
+        $hand->addCard(new Card('9', 'Spades'));
+
+        $dealerCard = new Card('7', 'Diamonds');
+
+        $this->assertSame(Decision::Stand, $strategy->decide($hand, $dealerCard));
+    }
+
+    public function testPairOf7sAgainstDealer5ShouldSplit(): void
+    {
+        $strategy = new BasicStrategy();
+
+        $hand = new Hand();
+        $hand->addCard(new Card('7', 'Hearts'));
+        $hand->addCard(new Card('7', 'Spades'));
+
+        $dealerCard = new Card('5', 'Diamonds');
+
+        $this->assertSame(Decision::Split, $strategy->decide($hand, $dealerCard));
+    }
+
+    public function testPairOf6sAgainstDealer4ShouldSplit(): void
+    {
+        $strategy = new BasicStrategy();
+
+        $hand = new Hand();
+        $hand->addCard(new Card('6', 'Hearts'));
+        $hand->addCard(new Card('6', 'Spades'));
+
+        $dealerCard = new Card('4', 'Diamonds');
+
+        $this->assertSame(Decision::Split, $strategy->decide($hand, $dealerCard));
+    }
+
+    public function testPairOf4sAgainstDealer5ShouldSplit(): void
+    {
+        $strategy = new BasicStrategy();
+
+        $hand = new Hand();
+        $hand->addCard(new Card('4', 'Hearts'));
+        $hand->addCard(new Card('4', 'Spades'));
+
+        $dealerCard = new Card('5', 'Diamonds');
+
+        $this->assertSame(Decision::Split, $strategy->decide($hand, $dealerCard));
+    }
+
+    public function testPairOf3sAgainstDealer4ShouldSplit(): void
+    {
+        $strategy = new BasicStrategy();
+
+        $hand = new Hand();
+        $hand->addCard(new Card('3', 'Hearts'));
+        $hand->addCard(new Card('3', 'Spades'));
+
+        $dealerCard = new Card('4', 'Diamonds');
+
+        $this->assertSame(Decision::Split, $strategy->decide($hand, $dealerCard));
+    }
+
+    public function testPairOf2sAgainstDealer4ShouldSplit(): void
+    {
+        $strategy = new BasicStrategy();
+
+        $hand = new Hand();
+        $hand->addCard(new Card('2', 'Hearts'));
+        $hand->addCard(new Card('2', 'Spades'));
+
+        $dealerCard = new Card('4', 'Diamonds');
+
+        $this->assertSame(Decision::Split, $strategy->decide($hand, $dealerCard));
+    }
+
+    public function testPairOf5sShouldNotSplit(): void
+    {
+        $strategy = new BasicStrategy();
+
+        $hand = new Hand();
+        $hand->addCard(new Card('5', 'Hearts'));
+        $hand->addCard(new Card('5', 'Spades'));
+
+        $dealerCard = new Card('6', 'Diamonds');
+
+        $this->assertSame(Decision::Double, $strategy->decide($hand, $dealerCard));
+    }
+
+    public function testPairOf10sShouldNotSplit(): void
+    {
+        $strategy = new BasicStrategy();
+
+        $hand = new Hand();
+        $hand->addCard(new Card('10', 'Hearts'));
+        $hand->addCard(new Card('10', 'Spades'));
+
+        $dealerCard = new Card('6', 'Diamonds');
+
+        $this->assertSame(Decision::Stand, $strategy->decide($hand, $dealerCard));
     }
 }

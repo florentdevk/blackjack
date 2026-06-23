@@ -63,4 +63,9 @@ final class Hand
         return count($this->cards) === 2
             && $this->cards[0]->rank() === $this->cards[1]->rank();
     }
+
+    public function pairRank(): string
+    {
+        return $this->cards[0]->rank();
+    }
 }
